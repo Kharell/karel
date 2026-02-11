@@ -153,7 +153,7 @@ const App: React.FC = () => {
                   <div
                     className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-1000 ease-in-out grayscale group-hover:grayscale-0 group-hover:scale-110"
                     style={{
-                      backgroundImage: `url(${PERSONAL_INFO.avatar || "./public/fp.jpg"})`,
+                      backgroundImage: `url(${PERSONAL_INFO.avatar || "/fp.jpg"})`,
                       backgroundPosition: "center 20%", // Mengatur agar wajah tetap di tengah meski di-zoom
                     }}></div>
 
