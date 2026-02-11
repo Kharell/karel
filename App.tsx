@@ -153,7 +153,7 @@ const App: React.FC = () => {
                   <div
                     className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-1000 ease-in-out grayscale group-hover:grayscale-0 group-hover:scale-110"
                     style={{
-                      backgroundImage: `url(${PERSONAL_INFO.avatar || "./fp.jpg"})`,
+                      backgroundImage: `url(${PERSONAL_INFO.avatar || "/fp.JPG"})`,
                       backgroundPosition: "center 20%", // Mengatur agar wajah tetap di tengah meski di-zoom
                     }}></div>
 
@@ -165,7 +165,7 @@ const App: React.FC = () => {
                 <div className="space-y-4">
                   <div>
                     <h2 className="text-white font-bold text-xl tracking-tight leading-tight">
-                      Pangeran Karel Ganteng 
+                      Pangeran Karel Ganteng
                     </h2>
                     <p className="text-yellow-500/80 text-[10px] font-bold tracking-[0.2em] uppercase mt-1">
                       S1 Teknik Informatika
