@@ -786,7 +786,10 @@ const App: React.FC = () => {
           </p>
           <div className="flex flex-wrap justify-center gap-4 sm:gap-6 text-slate-500 text-[11px] sm:text-sm">
             <span className="bg-slate-900 px-3 py-1 rounded-full border border-white/5">
-              React JS
+              React
+            </span>
+            <span className="bg-slate-900 px-3 py-1 rounded-full border border-white/5">
+              TypeScript
             </span>
             <span className="bg-slate-900 px-3 py-1 rounded-full border border-white/5">
               Vite
