@@ -104,39 +104,41 @@ const Chatbot: React.FC = () => {
 
   return (
     <div
-      className={`fixed z-[100] transition-all duration-300 ease-in-out ${
+      className={`fixed z-[100] transition-all duration-500 ease-in-out ${
         isOpen
-          ? "inset-0 sm:inset-auto sm:bottom-6 sm:right-6"
+          ? "inset-0 sm:inset-auto sm:bottom-6 sm:right-6" // Di mobile jadi Full Screen
           : "bottom-6 right-6"
       }`}>
       {/* Chat Window Container */}
       {isOpen && (
-        <div className="flex flex-col w-full h-full sm:w-[400px] sm:h-[600px] sm:max-h-[85vh] sm:rounded-[2rem] glass border-white/10 shadow-2xl overflow-hidden animate-in fade-in zoom-in slide-in-from-bottom-10 duration-300">
-          {/* Header */}
-          <div className="flex items-center justify-between p-4 sm:p-5 bg-gradient-to-r from-blue-600/20 to-purple-600/20 backdrop-blur-md border-b border-white/5">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-700 flex items-center justify-center border border-white/20 shadow-lg shadow-blue-500/10">
-                <span className="text-white font-black text-xs sm:text-sm">
-                  KK
-                </span>
+        <div className="flex flex-col w-full h-full sm:w-[420px] sm:h-[650px] sm:max-h-[85vh] sm:rounded-[2.5rem] bg-slate-900/95 backdrop-blur-2xl border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden animate-in fade-in zoom-in slide-in-from-bottom-10 duration-500">
+          {/* Header - Sticky di atas */}
+          <div className="flex items-center justify-between p-4 sm:p-5 bg-gradient-to-r from-blue-600/30 via-purple-600/30 to-blue-600/30 backdrop-blur-xl border-b border-white/10 shrink-0">
+            <div className="flex items-center gap-3 sm:gap-4">
+              <div className="relative">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-700 flex items-center justify-center border border-white/20 shadow-lg">
+                  <span className="text-white font-black text-xs sm:text-sm tracking-tighter">
+                    KK
+                  </span>
+                </div>
+                <span className="absolute -bottom-1 -right-1 w-3.5 h-3.5 bg-green-500 border-2 border-slate-900 rounded-full animate-pulse"></span>
               </div>
               <div>
-                <h3 className="text-sm sm:text-base font-bold text-white leading-tight">
-                  Asisten Pangeran
+                <h3 className="text-sm sm:text-base font-bold text-white flex items-center gap-2">
+                  Asisten Pangeran{" "}
+                  <span className="hidden sm:inline text-[10px] py-0.5 px-2 bg-blue-500/20 text-blue-300 rounded-full border border-blue-500/30 font-medium">
+                    AI
+                  </span>
                 </h3>
-                <div className="flex items-center gap-1.5 mt-0.5">
-                  <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(34,197,94,0.6)]"></span>
-                  <p className="text-[10px] sm:text-[11px] text-slate-400 font-medium tracking-wide uppercase">
-                    Tersedia Sekarang
-                  </p>
-                </div>
+                <p className="text-[9px] sm:text-[11px] text-blue-300/80 font-bold uppercase tracking-[0.1em] sm:tracking-[0.15em] animate-pulse">
+                  Online Sekarang
+                </p>
               </div>
             </div>
 
             <button
               onClick={() => setIsOpen(false)}
-              className="p-2 sm:p-2.5 rounded-xl hover:bg-white/10 text-slate-400 hover:text-white transition-all active:scale-90"
-              aria-label="Tutup Chat">
+              className="p-2 sm:p-2.5 rounded-xl bg-white/5 hover:bg-red-500/20 text-slate-400 hover:text-red-400 transition-all active:scale-90 border border-white/5">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="w-5 h-5 sm:w-6 sm:h-6"
@@ -153,113 +155,146 @@ const Chatbot: React.FC = () => {
             </button>
           </div>
 
-          {/* Messages Area */}
-          <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-6 bg-slate-950/20 custom-scrollbar">
+          {/* Area Pesan - Scrollable */}
+          <div className="flex-1 overflow-y-auto p-4 sm:p-5 space-y-6 bg-slate-950/40 custom-scrollbar overscroll-contain">
             {messages.map((msg, idx) => (
               <div
                 key={idx}
-                className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"} animate-in fade-in slide-in-from-bottom-2 duration-300`}>
+                className={`flex gap-2 sm:gap-3 ${msg.role === "user" ? "flex-row-reverse" : "flex-row"} animate-in fade-in slide-in-from-bottom-4 duration-500`}>
+                {/* Avatar Icon */}
+                <div className="flex-shrink-0 mt-1">
+                  {msg.role === "user" ? (
+                    <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-blue-500/20 border border-blue-500/40 flex items-center justify-center text-blue-400 shadow-inner">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        className="sm:w-[18px] sm:h-[18px]">
+                        <circle cx="12" cy="12" r="10" />
+                        <circle cx="12" cy="10" r="3" />
+                        <path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662" />
+                      </svg>
+                    </div>
+                  ) : (
+                    <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-purple-500/20 border border-purple-500/40 flex items-center justify-center text-purple-400 shadow-inner">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        className="sm:w-[18px] sm:h-[18px]">
+                        <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" />
+                      </svg>
+                    </div>
+                  )}
+                </div>
+
+                {/* Bubble Chat - Responsive Width */}
                 <div
-                  className={`group relative max-w-[88%] sm:max-w-[80%] p-3.5 sm:p-4 rounded-2xl text-[13px] sm:text-sm leading-relaxed shadow-sm transition-all ${
+                  className={`relative max-w-[80%] sm:max-w-[75%] p-3.5 sm:p-4 rounded-[1.4rem] sm:rounded-[1.8rem] text-[13px] sm:text-sm leading-relaxed shadow-xl border ${
                     msg.role === "user"
-                      ? "bg-blue-600 text-white rounded-br-none font-medium"
-                      : "glass text-slate-200 rounded-bl-none border-white/5 backdrop-blur-sm"
+                      ? "bg-gradient-to-br from-blue-600 to-indigo-700 text-white rounded-tr-none border-blue-400/30"
+                      : "bg-slate-800/80 backdrop-blur-md text-slate-200 rounded-tl-none border-white/10"
                   }`}>
                   {msg.text}
-                  {/* Bubble Tail Replacement - Pure CSS approach or omitted for cleaner look */}
+
+                  <div
+                    className={`flex items-center mt-1.5 opacity-40 text-[8px] sm:text-[10px] ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
+                    <span>
+                      {new Date().toLocaleTimeString([], {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                      })}
+                    </span>
+                    {msg.role === "user" && (
+                      <div className="flex ml-1 text-blue-200">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="10"
+                          height="10"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="3"
+                          className="sm:w-3 sm:h-3">
+                          <path d="M18 6 7 17l-5-5" />
+                          <path d="m22 10-7.5 7.5L13 16" />
+                        </svg>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
             ))}
-
-            {isLoading && (
-              <div className="flex justify-start animate-in fade-in duration-300">
-                <div className="glass p-4 rounded-2xl rounded-bl-none border-white/5 flex gap-1.5 items-center">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce [animation-duration:0.8s]"></div>
-                  <div className="w-2 h-2 bg-purple-500 rounded-full animate-bounce [animation-duration:0.8s] [animation-delay:0.2s]"></div>
-                  <div className="w-2 h-2 bg-blue-400 rounded-full animate-bounce [animation-duration:0.8s] [animation-delay:0.4s]"></div>
-                </div>
-              </div>
-            )}
             <div ref={messagesEndRef} />
           </div>
 
-          {/* Input Area */}
-          <div className="p-4 sm:p-6 bg-slate-950/40 border-t border-white/5 backdrop-blur-xl">
-            <div className="relative flex items-center gap-3">
+          {/* Input Area - Fixed di bawah */}
+          <div className="p-4 sm:p-6 bg-slate-900/90 border-t border-white/10 backdrop-blur-xl shrink-0">
+            <div className="relative flex items-center gap-2 group">
               <input
                 type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && handleSend()}
-                placeholder="Tanyakan sesuatu..."
-                className="w-full bg-slate-900/50 border border-white/10 rounded-2xl pl-5 pr-14 py-3 sm:py-4 text-[13px] sm:text-sm text-white focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 outline-none placeholder:text-slate-500 transition-all shadow-inner"
+                placeholder="Tulis pesan..."
+                className="flex-1 bg-slate-950/50 border border-white/10 rounded-2xl pl-4 pr-12 py-3.5 sm:py-4 text-[13px] sm:text-sm text-white focus:ring-2 focus:ring-blue-500/50 outline-none transition-all placeholder:text-slate-600"
               />
               <button
                 onClick={handleSend}
                 disabled={!input.trim() || isLoading}
-                className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 bg-blue-600 hover:bg-blue-500 disabled:bg-slate-800 disabled:opacity-50 text-white rounded-xl flex items-center justify-center transition-all active:scale-90 shadow-lg shadow-blue-500/20"
-                aria-label="Kirim Pesan">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className={`w-5 h-5 sm:w-6 sm:h-6 transition-transform ${isLoading ? "animate-spin" : ""}`}
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor">
-                  {isLoading ? (
+                className="absolute right-1.5 sm:right-2 w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-blue-500 to-indigo-600 hover:from-blue-400 hover:to-indigo-500 disabled:from-slate-800 text-white rounded-xl flex items-center justify-center transition-all active:scale-90">
+                {isLoading ? (
+                  <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                ) : (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-5 h-5 sm:w-6 sm:h-6 rotate-45"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor">
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
-                    />
-                  ) : (
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
+                      strokeWidth={2.5}
                       d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
                     />
-                  )}
-                </svg>
+                  </svg>
+                )}
               </button>
-            </div>
-            <div className="flex justify-between items-center mt-3 sm:mt-4 px-1">
-              <p className="text-[9px] sm:text-[10px] text-slate-500 font-medium uppercase tracking-wider">
-                Asisten Virtual Portofolio 
-              </p>
-              <p className="text-[9px] sm:text-[10px] text-slate-500 font-medium uppercase tracking-wider">
-                Pangeran Karel Kalang
-              </p>
             </div>
           </div>
         </div>
       )}
 
-      {/* Floating Toggle Button */}
+      {/* Floating Toggle Button - Responsif Size */}
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="group relative w-14 h-14 sm:w-16 sm:h-16 rounded-2xl sm:rounded-3xl flex items-center justify-center shadow-2xl transition-all duration-500 hover:scale-110 active:scale-95 bg-gradient-to-br from-blue-600 to-indigo-700 text-white hover:shadow-blue-500/40"
-          aria-label="Buka Chatbot">
-          <div className="absolute inset-0 rounded-2xl sm:rounded-3xl bg-blue-400/20 scale-110 blur-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
-
+          className="group relative w-14 h-14 sm:w-20 sm:h-20 rounded-2xl sm:rounded-[2.2rem] flex items-center justify-center shadow-2xl transition-all duration-500 hover:scale-110 active:scale-95 bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-700 text-white overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-shimmer transition-transform"></div>
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="w-7 h-7 sm:w-8 sm:h-8 relative z-10 transition-transform group-hover:rotate-12"
+            className="w-7 h-7 sm:w-10 sm:h-10 transition-transform group-hover:rotate-12 duration-300"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor">
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
-              strokeWidth={2}
+              strokeWidth={1.5}
               d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
             />
           </svg>
-
-          {/* Notification Badge */}
-          <span className="absolute -top-1.5 -right-1.5 w-4.5 h-4.5 sm:w-5 sm:h-5 bg-blue-400 rounded-full border-2 border-slate-950 flex items-center justify-center shadow-lg">
-            <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-white rounded-full animate-ping"></span>
+          <span className="absolute top-3 right-3 sm:top-5 sm:right-5 w-3 h-3 sm:w-4 sm:h-4 bg-blue-400 rounded-full border-2 border-slate-900 shadow-lg">
+            <span className="absolute inset-0 bg-white rounded-full animate-ping"></span>
           </span>
         </button>
       )}
