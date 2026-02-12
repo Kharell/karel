@@ -127,7 +127,7 @@ const Chatbot: React.FC = () => {
                 <h3 className="text-sm sm:text-base font-bold text-white flex items-center gap-2">
                   Asisten Pangeran{" "}
                   <span className="hidden sm:inline text-[10px] py-0.5 px-2 bg-blue-500/20 text-blue-300 rounded-full border border-blue-500/30 font-medium">
-                    AI
+                    karel Ganteng
                   </span>
                 </h3>
                 <p className="text-[9px] sm:text-[11px] text-blue-300/80 font-bold uppercase tracking-[0.1em] sm:tracking-[0.15em] animate-pulse">
