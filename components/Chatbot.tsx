@@ -225,7 +225,7 @@ const Chatbot: React.FC = () => {
             </div>
             <div className="flex justify-between items-center mt-3 sm:mt-4 px-1">
               <p className="text-[9px] sm:text-[10px] text-slate-500 font-medium uppercase tracking-wider">
-                Powered by Gemini AI
+                Asisten Virtual Portofolio 
               </p>
               <p className="text-[9px] sm:text-[10px] text-slate-500 font-medium uppercase tracking-wider">
                 Pangeran Karel Kalang
