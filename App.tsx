@@ -890,7 +890,7 @@ const App: React.FC = () => {
               Vite
             </span>
             <span className="bg-slate-900 px-3 py-1 rounded-full border border-white/5">
-              Tailwind CSS
+              Tailwind
             </span>
           </div>
         </div>
