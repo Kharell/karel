@@ -807,7 +807,7 @@ const App: React.FC = () => {
 
             {/* WhatsApp - Direct Chat */}
             <a
-              href={`https://wa.me/${PERSONAL_INFO.phone.replace(/\D/g, "")}?text=Halo%20Karel,%20saya%20tertarik%20bekerja%20sama%20dengan%20Anda.`}
+              href="https://wa.me/6281338373419?text=Halo%20Karel,%20saya%20mendapatkan%20nomor%20Anda%20dari%20web%20portofolio%20Anda%20dan%20saya%20tertarik%20bekerja%20sama%20dengan%20Anda.%20Terimakasih!"
               target="_blank"
               rel="noopener noreferrer"
               className="p-6 bg-slate-900/50 backdrop-blur-sm border border-slate-800 rounded-3xl hover:scale-105 transition-all group hover:border-green-500/40 shadow-sm">
