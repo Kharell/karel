@@ -2,25 +2,41 @@ import React, { useState, useEffect } from "react";
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false); // State untuk deteksi scroll
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isVisible, setIsVisible] = useState(true); // State untuk kontrol muncul/sembunyi
+  const [lastScrollY, setLastScrollY] = useState(0); // Simpan posisi scroll terakhir
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
-  // Efek untuk memantau scroll
+  // Efek untuk memantau scroll (Muncul/Sembunyi & Glass Effect)
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 20) {
+    const controlNavbar = () => {
+      const currentScrollY = window.scrollY;
+
+      // 1. Logika untuk Glass Effect (saat tidak di paling atas)
+      if (currentScrollY > 20) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
       }
+
+      // 2. Logika Muncul/Sembunyi (Auto-Hide)
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        // Jika scroll ke bawah dan sudah melewati 100px, sembunyikan
+        setIsVisible(false);
+        setIsOpen(false); // Tutup menu mobile jika sedang terbuka saat di-scroll
+      } else {
+        // Jika scroll ke atas, munculkan kembali
+        setIsVisible(true);
+      }
+
+      setLastScrollY(currentScrollY);
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    window.addEventListener("scroll", controlNavbar);
+    return () => window.removeEventListener("scroll", controlNavbar);
+  }, [lastScrollY]);
 
-  // Fungsi Smooth Scroll
   const handleSmoothScroll = (
     e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
     href: string,
@@ -28,10 +44,8 @@ const Navbar: React.FC = () => {
     e.preventDefault();
     const targetId = href.replace("#", "");
     const elem = document.getElementById(targetId);
-    elem?.scrollIntoView({
-      behavior: "smooth",
-    });
-    setIsOpen(false); // Tutup menu mobile jika terbuka
+    elem?.scrollIntoView({ behavior: "smooth" });
+    setIsOpen(false);
   };
 
   const navLinks = [
@@ -42,15 +56,16 @@ const Navbar: React.FC = () => {
   ];
 
   return (
+    // Transform translate-y digunakan untuk menyembunyikan navbar ke atas
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 px-4 md:px-6 py-4 transition-all duration-300 ${
-        isScrolled ? "py-2" : "py-4"
-      }`}>
+      className={`fixed top-0 left-0 right-0 z-50 px-4 md:px-6 py-4 transition-all duration-500 ${
+        isVisible ? "translate-y-0" : "-translate-y-full"
+      } ${isScrolled ? "py-2" : "py-4"}`}>
       <div
         className={`max-w-6xl mx-auto transition-all duration-500 rounded-2xl px-4 md:px-6 py-3 flex justify-between items-center relative ${
           isScrolled
-            ? "glass shadow-2xl border-white/10 backdrop-blur-xl" // Efek Kaca saat scroll
-            : "bg-transparent border-transparent" // Transparan saat di atas
+            ? "glass shadow-2xl border-white/10 backdrop-blur-xl"
+            : "bg-transparent border-transparent"
         }`}>
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-700 flex items-center justify-center border border-white/20 shadow-lg shadow-blue-500/20 group cursor-pointer">
@@ -70,7 +85,7 @@ const Navbar: React.FC = () => {
             <a
               key={link.name}
               href={link.href}
-              onClick={(e) => handleSmoothScroll(e, link.href)} // Tambah Smooth Scroll
+              onClick={(e) => handleSmoothScroll(e, link.href)}
               className="hover:text-blue-400 transition-colors relative group">
               {link.name}
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 transition-all group-hover:w-full"></span>
@@ -124,17 +139,11 @@ const Navbar: React.FC = () => {
                 <a
                   key={link.name}
                   href={link.href}
-                  onClick={(e) => handleSmoothScroll(e, link.href)} // Tambah Smooth Scroll
+                  onClick={(e) => handleSmoothScroll(e, link.href)}
                   className="text-slate-300 hover:text-blue-400 font-medium py-2 border-b border-white/5 last:border-0 transition-colors">
                   {link.name}
                 </a>
               ))}
-              <a
-                href="#contact"
-                onClick={(e) => handleSmoothScroll(e, "#contact")}
-                className="sm:hidden bg-blue-600 hover:bg-blue-500 text-white px-4 py-3 rounded-xl text-sm font-bold mt-2">
-                Hubungi Saya
-              </a>
             </div>
           </div>
         )}
