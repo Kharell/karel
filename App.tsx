@@ -577,40 +577,89 @@ const App: React.FC = () => {
       {/* Skills Section */}
       <section
         id="skills"
-        className="py-16 md:py-24 px-4 sm:px-6 bg-slate-900/30">
-        <div className="max-w-6xl mx-auto text-center md:text-left">
-          <SectionTitle title="Kemampuan & Teknologi" align="center" />
+        className="py-20 md:py-32 px-4 relative overflow-hidden">
+        {/* Background Decor */}
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-600/10 blur-[120px] -z-10"></div>
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-600/10 blur-[120px] -z-10"></div>
 
-          <div className="flex flex-wrap justify-center gap-2 mb-10 overflow-x-auto pb-4 no-scrollbar">
-            {SKILLS.map((cat) => (
-              <button
-                key={cat.title}
-                onClick={() => setActiveTab(cat.title)}
-                className={`whitespace-nowrap px-5 sm:px-6 py-2 rounded-full text-sm font-medium transition-all ${
-                  activeTab === cat.title
-                    ? "bg-blue-600 text-white shadow-lg shadow-blue-500/20 scale-105"
-                    : "bg-slate-800 text-slate-400 hover:bg-slate-700"
-                }`}>
-                {cat.title}
-              </button>
-            ))}
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-col md:flex-row items-end justify-between mb-12 gap-6">
+            <div className="text-left">
+              <h2 className="text-3xl md:text-5xl font-black tracking-tighter mb-4">
+                TECH{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
+                  STACK
+                </span>
+              </h2>
+              <p className="text-slate-400 max-w-md font-medium">
+                Kumpulan senjata digital yang saya gunakan untuk membangun
+                solusi masa depan.
+              </p>
+            </div>
+
+            {/* Tab Selector Modern */}
+            <div className="flex bg-slate-800/50 p-1.5 rounded-2xl backdrop-blur-md border border-white/5 overflow-x-auto no-scrollbar max-w-full">
+              {SKILLS.map((cat) => (
+                <button
+                  key={cat.title}
+                  onClick={() => setActiveTab(cat.title)}
+                  className={`px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all duration-500 whitespace-nowrap ${
+                    activeTab === cat.title
+                      ? "bg-blue-600 text-white shadow-[0_0_20px_rgba(37,99,235,0.4)] scale-100"
+                      : "text-slate-400 hover:text-white hover:bg-white/5"
+                  }`}>
+                  {cat.title}
+                </button>
+              ))}
+            </div>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4 transition-all">
-            {SKILLS.find((c) => c.title === activeTab)?.skills.map((skill) => (
-              <div
-                key={skill}
-                className="glass p-4 rounded-xl text-center hover:border-blue-500/50 hover:scale-105 transition-all group">
-                <div className="w-10 h-10 bg-slate-800 rounded-lg mx-auto mb-3 flex items-center justify-center group-hover:bg-blue-500/20">
-                  <span className="text-blue-400 text-[10px] font-bold">
-                    {skill.substring(0, 3).toUpperCase()}
-                  </span>
+          {/* Grid Content */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+            {SKILLS.find((c) => c.title === activeTab)?.skills.map(
+              (skill, idx) => (
+                <div
+                  key={skill}
+                  className="group relative"
+                  style={{ animationDelay: `${idx * 50}ms` }}>
+                  {/* Card Style */}
+                  <div className="relative h-full glass p-6 rounded-[2rem] border-white/5 bg-slate-900/40 overflow-hidden transition-all duration-500 group-hover:-translate-y-2 group-hover:border-blue-500/50 group-hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)]">
+                    {/* Background Hover Glow */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-purple-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+                    {/* Icon Loader - Menggunakan Simple Icons CDN */}
+                    <div className="relative w-14 h-14 mx-auto mb-4 flex items-center justify-center">
+                      <div className="absolute inset-0 bg-blue-500/10 rounded-2xl rotate-6 group-hover:rotate-12 transition-transform duration-500"></div>
+                      <div className="absolute inset-0 bg-slate-800 rounded-2xl border border-white/5 shadow-inner"></div>
+
+                      {/* Dynamic Icon Image */}
+                      <img
+                        src={`https://cdn.simpleicons.org/${skill.replace(/\s+/g, "").toLowerCase()}`}
+                        alt={skill}
+                        className="w-8 h-8 relative z-10 transition-all duration-500 group-hover:scale-110 group-hover:drop-shadow-[0_0_8px_rgba(59,130,246,0.8)]"
+                        onError={(e) => {
+                          // Fallback jika icon tidak ditemukan di CDN
+                          (e.target as HTMLImageElement).src =
+                            `https://ui-avatars.com/api/?name=${skill}&background=0D1117&color=3b82f6&bold=true`;
+                        }}
+                      />
+                    </div>
+
+                    {/* Label */}
+                    <div className="relative text-center">
+                      <p className="text-[13px] sm:text-sm font-black tracking-tight text-slate-300 group-hover:text-white transition-colors">
+                        {skill}
+                      </p>
+
+                      {/* Progress Indicator (Mini) */}
+                      <div className="mt-3 h-1 w-12 mx-auto bg-slate-800 rounded-full overflow-hidden">
+                        <div className="h-full w-0 group-hover:w-full bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-700 ease-out"></div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <p className="text-[13px] sm:text-sm font-semibold truncate">
-                  {skill}
-                </p>
-              </div>
-            ))}
+              ),
+            )}
           </div>
         </div>
       </section>
