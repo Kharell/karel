@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import Navbar from "./components/Navbar";
 import SectionTitle from "./components/SectionTitle";
 import Chatbot from "./components/Chatbot";
+import ScrollToTop from "./components/ScrollToTop";
 import {
   PERSONAL_INFO,
   PROJECTS,
@@ -44,6 +45,7 @@ const App: React.FC = () => {
 
       {/* AI Chatbot */}
       <Chatbot />
+      <ScrollToTop />
 
       {/* Project Detail Modal Overlay */}
       {selectedProject && (
