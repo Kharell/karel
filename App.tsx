@@ -499,30 +499,74 @@ const App: React.FC = () => {
               </div>
 
               {/* Contact Card Mini */}
-              <div className="glass p-6 rounded-[2rem] border-white/5 flex items-center justify-between group">
-                <div>
-                  <p className="text-xs text-slate-500 font-bold uppercase tracking-widest mb-1">
-                    Butuh CV Lengkap?
-                  </p>
-                  <p className="text-sm text-white font-bold">
-                    Kirim pesan ke email saya
-                  </p>
-                </div>
+              <div className="glass p-1 rounded-[2rem] border-white/5 overflow-hidden group">
                 <a
-                  href={`mailto:${PERSONAL_INFO.email}`}
-                  className="w-12 h-12 rounded-2xl bg-white text-slate-950 flex items-center justify-center hover:scale-110 transition-all shadow-lg shadow-white/10">
-                  <svg
-                    className="w-5 h-5"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24">
-                    <path
+                  href="https://drive.google.com/file/d/1iEuXyQx6IdGcGGuGURV_lJentyg771wd/view?usp=sharing"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-4 p-5 rounded-[1.8rem] bg-slate-900/40 hover:bg-blue-600/5 transition-all duration-500 group/link">
+                  {/* Icon Area - Dual Icon (Email + Drive) */}
+                  <div className="relative shrink-0">
+                    <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500/20 to-indigo-600/20 flex items-center justify-center text-blue-400 border border-blue-500/20 group-hover/link:scale-110 group-hover/link:border-blue-500/50 transition-all duration-500 shadow-lg shadow-blue-500/10">
+                      {/* Icon Google Drive */}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="22"
+                        height="22"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round">
+                        <path d="M9 12h6" />
+                        <path d="M12 9v6" />
+                        <path d="M15 2H9a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z" />
+                        <path d="M12 18v-1" />
+                      </svg>
+                    </div>
+
+                    {/* Mini Icon Drive Overlay */}
+                    <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-blue-600 rounded-lg border-2 border-[#0f172a] flex items-center justify-center shadow-lg">
+                      <svg
+                        viewBox="0 0 24 24"
+                        width="12"
+                        height="12"
+                        fill="white">
+                        <path d="M7.74 2L12 9.4L16.26 2H7.74ZM1.43 13L5.69 20.4H14.21L9.95 13H1.43ZM15.79 13L20.05 20.4H22.57L18.31 13H15.79Z" />
+                      </svg>
+                    </div>
+                  </div>
+
+                  {/* Text Area */}
+                  <div className="flex-1">
+                    <p className="text-[10px] text-slate-500 font-bold uppercase tracking-[0.2em] mb-0.5">
+                      Butuh CV Lengkap?
+                    </p>
+                    <div className="flex items-center gap-2">
+                      <p className="text-sm text-white font-bold group-hover/link:text-blue-400 transition-colors">
+                        Lihat di Google Drive
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Action Icon */}
+                  <div className="w-8 h-8 rounded-full flex items-center justify-center text-slate-600 group-hover/link:text-blue-400 group-hover/link:bg-blue-400/10 group-hover/link:translate-x-1 transition-all duration-300">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.5"
                       strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                    />
-                  </svg>
+                      strokeLinejoin="round">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                      <polyline points="15 3 21 3 21 9" />
+                      <line x1="10" y1="14" x2="21" y2="3" />
+                    </svg>
+                  </div>
                 </a>
               </div>
             </div>
