@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar";
 import SectionTitle from "./components/SectionTitle";
 import Chatbot from "./components/Chatbot";
 import ScrollToTop from "./components/ScrollToTop";
+import LoadingScreen from "./components/LoadingScreen";
 import {
   PERSONAL_INFO,
   PROJECTS,
@@ -41,9 +42,9 @@ const App: React.FC = () => {
       <div ref={cursorRef} className="custom-cursor hidden md:block"></div>
       <div ref={glowRef} className="custom-cursor-glow hidden md:block"></div>
 
+      {/* pemaggilan komponen */}
+      <LoadingScreen />
       <Navbar />
-
-      {/* AI Chatbot */}
       <Chatbot />
       <ScrollToTop />
 
