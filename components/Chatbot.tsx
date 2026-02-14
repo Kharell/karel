@@ -51,6 +51,7 @@ const Chatbot: React.FC = () => {
 
     try {
       const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_API_KEY });
+      // tanbahjab nanti api key nya 2 lagi agar bisa lama di gunakan promting saat chat
 
       const systemInstruction = `
         Anda adalah asisten virtual cerdas untuk website portofolio Karolus Jone Kalang.
