@@ -207,12 +207,16 @@ const App: React.FC = () => {
               Junior<span className="text-gradient"> Web Dev.</span>
             </h1>
             <p className="text-lg sm:text-xl text-slate-400 font-medium mb-10 max-w-xl mx-auto md:mx-0 leading-relaxed">
+              <span className="text-white font-semibold">Hellooooo ....</span>
+              <br />
+              <br />
               Selamat datang. Saya{" "}
-              <span className="text-white font-semibold">Pangeran Karel</span>,
-              seorang Junior Web Developer yang menggabungkan presisi teknis
-              dengan estetika desain kelas atas.
+              <span className="text-white font-semibold">
+                Karolus Jone Kalang
+              </span>
+              , seorang Junior Web Developer yang fokus pada pengembangan
+              aplikasi sistem berbasis Website
             </p>
-
             <div className="flex flex-wrap justify-center md:justify-start gap-4">
               <a
                 href="#contact"
