@@ -16,7 +16,7 @@ export const PROJECTS: Project[] = [
   {
     title: "Sistem Pendaftaran Siswa Baru TK",
     description:
-      "Aplikasi konsentrasi tingkat akhir berbasis web untuk manajemen pendaftaran siswa baru.",
+      "Mengikuti Pameran Aplikasi konsentrasi tingkat akhir di kampus Universitas Dipa Makassar, berbasis web untuk manajemen pendaftaran siswa baru tingkat Taman kanak-kanak di Tk Bakti Luhur Kota Makassar.",
     tags: ["PHP", "Full Stack", "MySQL"],
     role: "Freelance",
   },

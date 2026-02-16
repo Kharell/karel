@@ -209,7 +209,6 @@ const App: React.FC = () => {
             <p className="text-lg sm:text-xl text-slate-400 font-medium mb-10 max-w-xl mx-auto md:mx-0 leading-relaxed">
               <span className="text-white font-semibold">Hellooooo ....</span>
               <br />
-              <br />
               Selamat datang. Saya{" "}
               <span className="text-white font-semibold">
                 Karolus Jone Kalang
@@ -480,7 +479,7 @@ const App: React.FC = () => {
                           Gelar
                         </p>
                         <p className="text-sm font-bold text-white">
-                          S.Kom (Cand.)
+                          S.Kom 
                         </p>
                       </div>
                       <div className="bg-slate-900/50 p-3 rounded-2xl border border-white/5">
