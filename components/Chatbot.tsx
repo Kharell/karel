@@ -126,7 +126,7 @@ const Chatbot: React.FC = () => {
                   Asisten Pangeran
                 </h3>
                 <p className="text-[10px] text-blue-300/80 font-bold uppercase tracking-[0.2em] mt-1">
-                  Online Sekarang
+                  Karel Ganteng
                 </p>
               </div>
             </div>
@@ -203,7 +203,7 @@ const Chatbot: React.FC = () => {
                     <span className="w-1.5 h-1.5 bg-indigo-400 rounded-full animate-bounce"></span>
                   </div>
                   <span className="text-[11px] text-indigo-300 font-medium italic ml-1">
-                    Berpikir...
+                    Waiting ...
                   </span>
                 </div>
               </div>
