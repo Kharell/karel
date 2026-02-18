@@ -27,9 +27,16 @@ const Chatbot: React.FC = () => {
   };
 
   useEffect(() => {
+    // Menangani tinggi viewport dinamis (perbaikan untuk mobile & zoom)
+    const handleResize = () => {
+      let vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty("--vh", `${vh}px`);
+    };
+
     if (isOpen) {
+      handleResize();
+      window.addEventListener("resize", handleResize);
       scrollToBottom();
-      // Mencegah scroll pada body saat chat terbuka di mobile
       if (window.innerWidth < 640) {
         document.body.style.overflow = "hidden";
       }
@@ -37,6 +44,7 @@ const Chatbot: React.FC = () => {
       document.body.style.overflow = "unset";
     }
     return () => {
+      window.removeEventListener("resize", handleResize);
       document.body.style.overflow = "unset";
     };
   }, [messages, isOpen]);
@@ -51,9 +59,6 @@ const Chatbot: React.FC = () => {
 
     try {
       const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_API_KEY });
-      // tanbahjab nanti api key nya 2 lagi agar bisa lama di gunakan promting saat chat
-      // const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_API_KEY });
-      // const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_API_KEY });
 
       const systemInstruction = `
         Anda adalah asisten virtual cerdas untuk website portofolio Karolus Jone Kalang.
@@ -109,7 +114,13 @@ const Chatbot: React.FC = () => {
     <div className="fixed bottom-6 right-6 z-[100] font-sans antialiased">
       {/* Chat Window Container */}
       {isOpen && (
-        <div className="absolute bottom-24 right-0 w-[92vw] sm:w-[440px] h-[75vh] sm:h-[680px] max-h-[700px] flex flex-col bg-slate-900/90 backdrop-blur-3xl border border-white/20 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.7)] rounded-[3rem] overflow-hidden origin-bottom-right animate-in fade-in zoom-in slide-in-from-bottom-12 duration-500 ease-out">
+        <div
+          style={{
+            // Tinggi dikurangi sedikit dan dibuat dinamis agar tidak terpotong saat zoom
+            height: "calc(var(--vh, 1vh) * 85 - 20px)",
+            maxHeight: "550px",
+          }}
+          className="absolute bottom-24 right-0 w-[92vw] sm:w-[440px] flex flex-col bg-slate-900/90 backdrop-blur-3xl border border-white/20 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.7)] rounded-[3rem] overflow-hidden origin-bottom-right animate-in fade-in zoom-in slide-in-from-bottom-12 duration-500 ease-out">
           {/* Header */}
           <div className="relative flex items-center justify-between p-5 sm:p-6 bg-white/5 border-b border-white/10 shrink-0">
             <div className="flex items-center gap-4">
@@ -156,7 +167,6 @@ const Chatbot: React.FC = () => {
               <div
                 key={idx}
                 className={`flex gap-3.5 ${msg.role === "user" ? "flex-row-reverse" : "flex-row"} animate-in fade-in slide-in-from-bottom-4 duration-500`}>
-                {/* Avatar: User Icon vs AI "K" Logo */}
                 <div
                   className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 shadow-lg border ${
                     msg.role === "user"
@@ -190,7 +200,6 @@ const Chatbot: React.FC = () => {
               </div>
             ))}
 
-            {/* Indikator Memutar saat Menunggu Balasan AI */}
             {isLoading && (
               <div className="flex gap-3.5 animate-in fade-in duration-300">
                 <div className="w-9 h-9 rounded-xl bg-indigo-600/20 border border-indigo-400/30 text-indigo-400 flex items-center justify-center shrink-0">
@@ -309,6 +318,6 @@ const Chatbot: React.FC = () => {
       </button>
     </div>
   );
-}; 
+};
 
 export default Chatbot;
