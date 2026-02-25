@@ -107,7 +107,7 @@ export const SKILLS: SkillCategory[] = [
   },
   {
     title: "Tools & Testing",
-    skills: ["Postman API Testing", "Laragon", "Vercel"],
+    skills: ["Postman API Testing", "Laragon", "Vercel","Docker" ,"Git & GitHub"],
   },
   {
     title: "Design & Others",
