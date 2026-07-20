@@ -1,39 +1,62 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Karel Kalang | Junior Developer</title>
+  
+  <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Konfigurasi Tailwind CDN untuk mengaktifkan Dark Mode -->
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {}
+      }
+    }
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
   <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    
     body {
       font-family: 'Inter', sans-serif;
-      scroll-behavior: smooth;
       cursor: none; /* Hide default cursor to use custom one */
+      /* Transisi halus saat ganti tema */
+      transition: background-color 0.5s ease, color 0.5s ease;
     }
+
     .glass {
       background: rgba(15, 23, 42, 0.8);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border: 1px solid rgba(255, 255, 255, 0.1);
     }
+    
     .text-gradient {
       background: linear-gradient(to right, #60a5fa, #a78bfa);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
+    
     @keyframes float {
       0% { transform: translateY(0px); }
       50% { transform: translateY(-10px); }
       100% { transform: translateY(0px); }
     }
+    
     .animate-float {
       animation: float 3s ease-in-out infinite;
     }
+    
     /* Custom Cursor Styles */
     .custom-cursor {
       width: 20px;
@@ -46,6 +69,7 @@
       transition: transform 0.1s ease-out, background 0.3s ease;
       mix-blend-mode: screen;
     }
+    
     .custom-cursor-glow {
       width: 150px;
       height: 150px;
@@ -57,6 +81,7 @@
       transform: translate(-50%, -50%);
       transition: transform 0.15s ease-out;
     }
+    
     a:hover ~ .custom-cursor, 
     button:hover ~ .custom-cursor {
       transform: scale(3);
@@ -68,7 +93,34 @@
       body { cursor: auto; }
       .custom-cursor, .custom-cursor-glow { display: none; }
     }
+
+    /* Custom Scrollbar - Support Light & Dark */
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 5px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.05);
+      border-radius: 10px;
+    }
+    .dark .custom-scrollbar::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.05);
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: rgba(59, 130, 246, 0.5);
+      border-radius: 10px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: rgba(59, 130, 246, 0.8);
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
   </style>
+
 <script type="importmap">
 {
   "imports": {
@@ -79,9 +131,10 @@
   }
 }
 </script>
-<link rel="stylesheet" href="/index.css">
 </head>
-<body class="bg-slate-950 text-slate-200">
+
+<!-- Ubah class body agar mendukung warna terang secara default dan gelap saat class 'dark' aktif -->
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-200">
   <div id="root"></div>
 <script type="module" src="/index.tsx"></script>
 </body>
